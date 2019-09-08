@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.cosmicdan.horasomni.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "WorldTickTime"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

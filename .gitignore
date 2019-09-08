@@ -1,0 +1,39 @@
+# ignore everything with exceptions
+/?*
+/?*/
+
+# common stuff
+!/gradle/
+!/src/
+!/.gitignore
+!/gradle?*
+!**/?*.gradle
+!**/?*.properties
+
+# lombok
+!/lombok.config
+
+# IDEA stuff
+!/.idea/
+/.idea/inspectionProfiles/*
+!/.idea/inspectionProfiles/CosmicDan*
+!/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/runConfigurations/
+/.idea/$*
+/.idea/hotswap_agent.xml
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea/uiDesigner.xml
+/.idea/workspace.xml
+
+
+# Other stuff specific to my modding
+!/scripts/
+!**/?*.txt
+!**/?*.md
+!**/?*.cmd
+!**/?*.bat
+
+
+
+
