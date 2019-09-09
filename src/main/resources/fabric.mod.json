@@ -3,10 +3,10 @@
   "id": "horasomni",
   "version": "${version}",
 
-  "name": "HoraSomni",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Hora Somni",
+  "description": "Timelapse sleep, extended day length, and more!",
   "authors": [
-    "Me!"
+    "CosmicDan"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -19,8 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cosmicdan.horasomni.HoraSomni"
-    ]
+		"com.cosmicdan.horasomni.HoraSomni"
+    ],
+	"modmenu": [
+		"com.cosmicdan.horasomni.client.ModMenuInitializer"
+	]
   },
   "mixins": [
     "horasomni.mixins.json"

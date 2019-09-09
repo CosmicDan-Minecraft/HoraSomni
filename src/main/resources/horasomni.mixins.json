@@ -3,9 +3,11 @@
   "package": "com.cosmicdan.horasomni.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "WorldTickTime"
   ],
   "client": [
-    "WorldTickTime"
+  ],
+  "server": [
   ],
   "injectors": {
     "defaultRequire": 1

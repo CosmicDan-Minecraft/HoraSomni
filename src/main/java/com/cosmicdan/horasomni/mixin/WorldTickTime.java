@@ -1,7 +1,7 @@
 package com.cosmicdan.horasomni.mixin;
 
-import com.cosmicdan.horasomni.HoraSomni;
-import net.minecraft.client.MinecraftClient;
+import com.cosmicdan.horasomni.ModConfig;
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
@@ -13,26 +13,27 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(World.class)
+@SuppressWarnings({"WeakerAccess", "InstanceVariableMayNotBeInitialized"})
+@Log4j2(topic = "Hora Somni")
 public class WorldTickTime {
-    private int dayTickSkipCounter = 0;
-    private int dayLengthMultiplier = 100;
-
     @Shadow
-    private final Dimension dimension = null;
+    public Dimension dimension;
 
-    @Inject(method = "tickTime", cancellable = true, at = @At(value = "JUMP", opcode = Opcodes.IFEQ, shift = At.Shift.AFTER))
+    private int overworldDayTicksSkipped = 0;
+
+    @Inject(method = "tickTime", /*locals = LocalCapture.PRINT,*/ cancellable = true, at = @At(value = "JUMP", opcode = Opcodes.IFEQ, shift = At.Shift.AFTER))
     protected void tickTime(final CallbackInfo callbackInfo) {
         // we're injecting before the call to setTimeOfDay (after the JUMP)
-        //final World world = (World) (Object) this;
-        if (dimension.getType().equals(DimensionType.OVERWORLD)) {
-            if (dayTickSkipCounter == (dayLengthMultiplier - 1)) {
+        if ((dimension != null) && dimension.getType().equals(DimensionType.OVERWORLD)) {
+            if (overworldDayTicksSkipped >= (ModConfig.DAY_LENGTH_MULTIPLIER.value - 1)) {
                 // counter elapsed - reset counter and allow original logic
-                dayTickSkipCounter = 0;
+                overworldDayTicksSkipped = 0;
             } else {
                 // counter NOT elapsed - increment and cancel target (skips original setTimeOfDay call)
-                dayTickSkipCounter++;
+                overworldDayTicksSkipped++;
                 callbackInfo.cancel();
             }
         }
+
     }
 }
