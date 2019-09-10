@@ -11,20 +11,24 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 /**
+ * MinecraftServer hooks for Hora Somni
  * @author Daniel 'CosmicDan' Connolly
  */
 @Mixin(MinecraftServer.class)
+@SuppressWarnings("WeakerAccess")
 @Log4j2
 public class MinecraftServerHooks {
     @Shadow
-    public ServerWorld getWorld(DimensionType dimensionType_1) {return null;}
+    public ServerWorld getWorld(DimensionType DIMENSION_TYPE) {return null;}
 
+    /**
+     * Hook for Timelapse. Replaces the inline 50ms-per-tick value with a getter.
+     * @param originalValue The current ms-per-tick from #run constants being replaced
+     * @return The desired MS-per-tick delay
+     */
     @ModifyConstant(method = "run", constant = @Constant(longValue = 50L), require = 4, expect = 4)
     public long getMsPerTicks(final long originalValue) {
-        //noinspection CastToIncompatibleInterface
         final ServerWorld overworld = getWorld(DimensionType.OVERWORLD);
-        //  TODO: move this to a "onPlayerWake" event
-        overworld.updatePlayersSleeping();
         //noinspection CastToIncompatibleInterface
         return (ModConfig.ENABLE_TIMELAPSE.value && ((ServerWorldAccessor)overworld).getAllPlayersSleeping()) ? 1L : originalValue;
     }

@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
+ * ServerWorld hooks
  * @author Daniel 'CosmicDan' Connolly
  */
 @Mixin(ServerWorld.class)
@@ -21,12 +22,26 @@ public class ServerWorldHooks {
     @Shadow
     private boolean allPlayersSleeping;
 
+    private boolean timelapseActive = false;
+
+    /**
+     * Hook for Timelapse. Prevents "skip to day" logic from occuring.
+     * @param owner
+     * @return
+     */
     @Redirect(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/server/world/ServerWorld;allPlayersSleeping:Z", opcode = Opcodes.GETFIELD))
     public boolean shouldSkipToDay(final ServerWorld owner) {
-        // always update our internal flag with current gamestate, so day length can act accordingly
         boolean shouldSkip = false; // always prevent skip-to-day by default
         if (!ModConfig.ENABLE_TIMELAPSE.value) // timelapse disabled so do vanilla logic
             shouldSkip = allPlayersSleeping;
+        else { // timelapse enabled
+            if (allPlayersSleeping) // timelapse has started
+                timelapseActive = true;
+            else if (timelapseActive) { // timelapse has ended
+                timelapseActive = false;
+                owner.updatePlayersSleeping();
+            }
+        }
         return shouldSkip;
     }
 }

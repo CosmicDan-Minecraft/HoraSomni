@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * World hooks for Hora Somni
+ * @author Daniel 'CosmicDan' Connolly
+ */
 @Mixin(World.class)
 @SuppressWarnings({"WeakerAccess", "InstanceVariableMayNotBeInitialized"})
 @Log4j2
@@ -19,8 +23,17 @@ public class WorldHooks {
     @Shadow
     public Dimension dimension;
 
+    /**
+     * We just use a simple integer multiplier for day length to avoid expensive math - a simple counter "consumes" time progression ticks
+     * that we want to skip, only letting every n ticks through.
+     */
     private static int OVERWORLD_TIMETICKS_SKIPPED = 0;
 
+    /**
+     * Hook for day length multiplier. Only cares about Overworld.
+     * @see WorldHooks#OVERWORLD_TIMETICKS_SKIPPED
+     * @param callbackInfo see {@link CallbackInfo}
+     */
     @Inject(method = "tickTime", /*locals = LocalCapture.PRINT,*/ cancellable = true, at = @At(value = "JUMP", opcode = Opcodes.IFEQ, shift = At.Shift.AFTER))
     protected void tickTime(final CallbackInfo callbackInfo) {
         // we're injecting before the call to setTimeOfDay (after the JUMP)
