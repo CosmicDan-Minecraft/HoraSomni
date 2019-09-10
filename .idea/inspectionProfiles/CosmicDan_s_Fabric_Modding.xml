@@ -1856,6 +1856,7 @@
           <item value="com.cosmicdan.cosmiclib.annotations.ForgeEntryPoint" />
           <item value="net.minecraftforge.common.config.Config.Comment" />
           <item value="net.minecraftforge.common.config.Config.LangKey" />
+          <item value="org.spongepowered.asm.mixin.Shadow" />
         </value>
       </option>
     </inspection_tool>
@@ -2296,6 +2297,7 @@
       <option name="useParameterizedTypeForCollectionMethods" value="true" />
       <option name="doNotWeakenToJavaLangObject" value="true" />
       <option name="onlyWeakentoInterface" value="true" />
+      <stopClasses>org.spongepowered.asm.mixin.injection.callback.CallbackInfo</stopClasses>
     </inspection_tool>
     <inspection_tool class="TypeParameterExtendsFinalClass" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="TypeParameterExtendsObject" enabled="true" level="WARNING" enabled_by_default="true" />
