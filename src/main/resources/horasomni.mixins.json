@@ -3,7 +3,10 @@
   "package": "com.cosmicdan.horasomni.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "WorldTickTime"
+    "WorldHooks",
+    "ServerWorldAccessor",
+    "ServerWorldHooks",
+    "MinecraftServerHooks"
   ],
   "client": [
   ],

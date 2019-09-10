@@ -3,8 +3,11 @@ package com.cosmicdan.horasomni;
 import de.siphalor.tweed.client.TweedClothBridge;
 import de.siphalor.tweed.config.*;
 import de.siphalor.tweed.config.constraints.RangeConstraint;
+import de.siphalor.tweed.config.entry.BooleanEntry;
 import de.siphalor.tweed.config.entry.IntEntry;
 import de.siphalor.tweed.config.fixers.ConfigEntryLocationFixer;
+import lombok.experimental.UtilityClass;
+import lombok.extern.log4j.Log4j2;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
@@ -12,10 +15,10 @@ import net.minecraft.client.gui.screen.Screen;
 /**
  * @author Daniel 'CosmicDan' Connolly
  */
-//@SuppressWarnings("WeakerAccess") // needed for Cloth discovery
+@Log4j2
+@UtilityClass
 public class ModConfig {
-
-    private static final ConfigFile CONFIG_FILE = TweedRegistry.registerConfigFile(HoraSomni.MOD_ID).setReloadListener(ModConfig::reload).setEnvironment(ConfigEnvironment.SERVER);
+    private static final ConfigFile CONFIG_FILE = TweedRegistry.registerConfigFile(Main.MOD_ID).setReloadListener(ModConfig::reload).setEnvironment(ConfigEnvironment.SERVER);
     private static final TweedClothBridge TWEED_CLOTH_BRIDGE;
 
     static {
@@ -39,6 +42,10 @@ public class ModConfig {
             CATEGORY_GENERAL.register("dayLengthMultiplier", new IntEntry(1))
                     .addConstraint(new RangeConstraint<Integer>().greaterThan(0))
                     .setComment("Desired day length multiplier. E.g. 2 is twice as long.");
+
+    public static final BooleanEntry ENABLE_TIMELAPSE =
+            CATEGORY_GENERAL.register("enableTimelapse", new BooleanEntry(true))
+                    .setComment("Disable for vanilla behavior.");
 
 
     private static void reload(final ConfigEnvironment configEnvironment, final ConfigScope configScope) {

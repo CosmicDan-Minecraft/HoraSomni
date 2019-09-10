@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-		"com.cosmicdan.horasomni.HoraSomni"
+		"com.cosmicdan.horasomni.Main"
     ],
 	"modmenu": [
 		"com.cosmicdan.horasomni.client.ModMenuInitializer"

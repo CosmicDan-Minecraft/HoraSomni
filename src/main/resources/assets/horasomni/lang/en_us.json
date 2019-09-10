@@ -1,5 +1,6 @@
 {
 	"tweed.cloth.horasomni": "Hora Somni Config",
 	"tweed.cloth.horasomni.general": "General",
-	"tweed.cloth.horasomni.general.dayLengthMultiplier": "Day Length Multiplier"
+	"tweed.cloth.horasomni.general.dayLengthMultiplier": "Day Length Multiplier",
+	"tweed.cloth.horasomni.general.enableTimelapse": "Timelapse Sleep"
 }

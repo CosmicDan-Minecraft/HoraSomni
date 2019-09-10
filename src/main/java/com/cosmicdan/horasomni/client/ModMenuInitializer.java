@@ -1,6 +1,6 @@
 package com.cosmicdan.horasomni.client;
 
-import com.cosmicdan.horasomni.HoraSomni;
+import com.cosmicdan.horasomni.Main;
 import com.cosmicdan.horasomni.ModConfig;
 import io.github.prospector.modmenu.api.ModMenuApi;
 import net.minecraft.client.gui.screen.Screen;
@@ -13,7 +13,7 @@ import java.util.function.Function;
 public class ModMenuInitializer implements ModMenuApi {
     @Override
     public String getModId() {
-        return HoraSomni.MOD_ID;
+        return Main.MOD_ID;
     }
 
     @Override
