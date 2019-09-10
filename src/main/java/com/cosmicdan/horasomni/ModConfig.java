@@ -49,6 +49,6 @@ public class ModConfig {
 
 
     private static void reload(final ConfigEnvironment configEnvironment, final ConfigScope configScope) {
-
+        // TODO
     }
 }

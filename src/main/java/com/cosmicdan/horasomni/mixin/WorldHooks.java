@@ -30,12 +30,14 @@ public class WorldHooks {
     private static int OVERWORLD_TIMETICKS_SKIPPED = 0;
 
     /**
-     * Hook for day length multiplier. Only cares about Overworld.
+     * Hook for day/night length multiplier. Only cares about Overworld.
      * @see WorldHooks#OVERWORLD_TIMETICKS_SKIPPED
      * @param callbackInfo see {@link CallbackInfo}
      */
     @Inject(method = "tickTime", /*locals = LocalCapture.PRINT,*/ cancellable = true, at = @At(value = "JUMP", opcode = Opcodes.IFEQ, shift = At.Shift.AFTER))
-    protected void tickTime(final CallbackInfo callbackInfo) {
+        protected void tickTime(final CallbackInfo callbackInfo) {
+        // TODO: Split into three values. Multiplier for day length, multiplier for night length, and multiplier override (both day + night) during timelapse.
+        // TODO: Divider for Turbo Timelapse. This would be another hook though.
         // we're injecting before the call to setTimeOfDay (after the JUMP)
         if ((dimension != null) && dimension.getType().equals(DimensionType.OVERWORLD)) {
             if (OVERWORLD_TIMETICKS_SKIPPED >= (ModConfig.DAY_LENGTH_MULTIPLIER.value - 1)) {

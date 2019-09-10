@@ -15,11 +15,19 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
  * @author Daniel 'CosmicDan' Connolly
  */
 @Mixin(MinecraftServer.class)
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "ReturnOfNull", "SameReturnValue"})
 @Log4j2
 public class MinecraftServerHooks {
     @Shadow
-    public ServerWorld getWorld(DimensionType DIMENSION_TYPE) {return null;}
+    public ServerWorld getWorld(final DimensionType dimensionType) {return null;}
+
+    /**
+     * @return True if Timelapse config is enabled and all players are currently sleeping.
+     */
+    private boolean shouldTimelapseNow() {
+        //noinspection CastToIncompatibleInterface
+        return ModConfig.ENABLE_TIMELAPSE.value && ((ServerWorldAccessor)getWorld(DimensionType.OVERWORLD)).isAllPlayersSleeping();
+    }
 
     /**
      * Hook for Timelapse. Replaces the inline 50ms-per-tick value with a getter.
@@ -28,10 +36,6 @@ public class MinecraftServerHooks {
      */
     @ModifyConstant(method = "run", constant = @Constant(longValue = 50L), require = 4, expect = 4)
     public long getMsPerTicks(final long originalValue) {
-        final ServerWorld overworld = getWorld(DimensionType.OVERWORLD);
-        //noinspection CastToIncompatibleInterface
-        return (ModConfig.ENABLE_TIMELAPSE.value && ((ServerWorldAccessor)overworld).getAllPlayersSleeping()) ? 1L : originalValue;
+        return shouldTimelapseNow() ? 1L : originalValue;
     }
-
-
 }

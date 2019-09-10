@@ -7,8 +7,9 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 /**
  * @author Daniel 'CosmicDan' Connolly
  */
+@SuppressWarnings({"InterfaceMayBeAnnotatedFunctional", "WeakerAccess"})
 @Mixin(ServerWorld.class)
 public interface ServerWorldAccessor {
     @Accessor
-    boolean getAllPlayersSleeping();
+    boolean isAllPlayersSleeping();
 }

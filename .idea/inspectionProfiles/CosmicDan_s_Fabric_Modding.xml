@@ -1314,6 +1314,7 @@
       <option name="ignorableAnnotations">
         <value>
           <item value="com.cosmicdan.cosmiclib.annotations.ForgeModLibrary" />
+          <item value="org.spongepowered.asm.mixin.Mixin" />
         </value>
       </option>
     </inspection_tool>

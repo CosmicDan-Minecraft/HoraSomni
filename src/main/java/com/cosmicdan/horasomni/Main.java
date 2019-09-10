@@ -6,7 +6,7 @@ import net.fabricmc.api.ModInitializer;
 @Log4j2
 public class Main implements ModInitializer {
 	public static final String MOD_ID = "horasomni";
-	public static final String MOD_NAME = "Hora Somni";
+	//public static final String MOD_NAME = "Hora Somni";
 
 	@Override
 	public void onInitialize() {

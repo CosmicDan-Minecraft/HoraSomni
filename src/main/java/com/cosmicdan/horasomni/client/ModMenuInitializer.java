@@ -10,6 +10,7 @@ import java.util.function.Function;
 /**
  * @author Daniel 'CosmicDan' Connolly
  */
+@SuppressWarnings("ClassWithoutLogger")
 public class ModMenuInitializer implements ModMenuApi {
     @Override
     public String getModId() {
