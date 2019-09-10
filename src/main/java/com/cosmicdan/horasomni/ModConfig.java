@@ -18,7 +18,7 @@ import net.minecraft.client.gui.screen.Screen;
 @Log4j2
 @UtilityClass
 public class ModConfig {
-    private static final ConfigFile CONFIG_FILE = TweedRegistry.registerConfigFile(Main.MOD_ID).setReloadListener(ModConfig::reload).setEnvironment(ConfigEnvironment.SERVER);
+    private static final ConfigFile CONFIG_FILE = TweedRegistry.registerConfigFile(ModInfo.MOD_ID).setReloadListener(ModConfig::reload).setEnvironment(ConfigEnvironment.SERVER);
     private static final TweedClothBridge TWEED_CLOTH_BRIDGE;
 
     static {

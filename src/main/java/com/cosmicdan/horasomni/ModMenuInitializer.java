@@ -12,7 +12,7 @@ import java.util.function.Function;
 public class ModMenuInitializer implements ModMenuApi {
     @Override
     public String getModId() {
-        return Main.MOD_ID;
+        return ModInfo.MOD_ID;
     }
 
     @Override
