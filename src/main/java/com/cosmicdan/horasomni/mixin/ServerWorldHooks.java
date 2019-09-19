@@ -31,7 +31,7 @@ public class ServerWorldHooks {
     public boolean shouldSkipToDay(final ServerWorld owner) {
         boolean shouldSkip = false; // always prevent skip-to-day by default
         // timelapse disabled so do vanilla logic
-        if (ModConfig.ENABLE_TIMELAPSE.value) { // timelapse enabled
+        if (ModConfig.TIMELAPSE_ENABLED.value) { // timelapse enabled
             if (allPlayersSleeping) // timelapse has started
                 timelapseActive = true;
             else if (timelapseActive) { // timelapse has ended

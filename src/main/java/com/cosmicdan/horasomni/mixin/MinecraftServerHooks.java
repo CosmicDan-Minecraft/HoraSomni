@@ -26,7 +26,7 @@ public class MinecraftServerHooks {
      */
     private boolean shouldTimelapseNow() {
         //noinspection CastToIncompatibleInterface
-        return ModConfig.ENABLE_TIMELAPSE.value && ((ServerWorldAccessor)getWorld(DimensionType.OVERWORLD)).isAllPlayersSleeping();
+        return ModConfig.TIMELAPSE_ENABLED.value && ((ServerWorldAccessor)getWorld(DimensionType.OVERWORLD)).isAllPlayersSleeping();
     }
 
     /**

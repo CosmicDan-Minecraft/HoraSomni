@@ -1,6 +1,11 @@
 {
-	"tweed.cloth.horasomni": "Hora Somni Config",
-	"tweed.cloth.horasomni.general": "General",
-	"tweed.cloth.horasomni.general.dayLengthMultiplier": "Day Length Multiplier",
-	"tweed.cloth.horasomni.general.enableTimelapse": "Timelapse Sleep"
+    "tweed.cloth.horasomni": "Hora Somni Config",
+    "tweed.cloth.horasomni.timescale": "Timescale",
+    "tweed.cloth.horasomni.timescale.dayMultiplier": "Day Length Multiplier",
+    "tweed.cloth.horasomni.timescale.nightMultiplierEnabled": "Custom Night Length",
+    "tweed.cloth.horasomni.timescale.nightMultiplier": "Night Length Multiplier",
+    "tweed.cloth.horasomni.timescale.nightMultiplierStart": "Night Multiplier Start",
+    "tweed.cloth.horasomni.timescale.nightMultiplierEnd": "Night Multiplier End",
+    "tweed.cloth.horasomni.timelapse": "Timelapse",
+    "tweed.cloth.horasomni.timelapse.enableTimelapse": "Enable Timelapse"
 }

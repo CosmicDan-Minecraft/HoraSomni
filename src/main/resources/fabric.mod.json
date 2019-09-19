@@ -22,7 +22,7 @@
 		"com.cosmicdan.horasomni.Main"
     ],
 	"modmenu": [
-		"com.cosmicdan.horasomni.client.ModMenuInitializer"
+		"com.cosmicdan.horasomni.ModMenuInitializer"
 	]
   },
   "mixins": [
